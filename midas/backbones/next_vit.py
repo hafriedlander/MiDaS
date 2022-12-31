@@ -1,13 +1,10 @@
-import timm
+from pathlib import Path
 
+import timm
 import torch.nn as nn
 
-from pathlib import Path
+from ..external.next_vit.classification.nextvit import *
 from .utils import activations, forward_default, get_activation
-
-file = open("./externals/Next_ViT/classification/nextvit.py", "r")
-source_code = file.read().replace(" utils", " externals.Next_ViT.classification.utils")
-exec(source_code)
 
 
 def forward_next_vit(pretrained, x):
@@ -15,8 +12,8 @@ def forward_next_vit(pretrained, x):
 
 
 def _make_next_vit_backbone(
-        model,
-        hooks=[2, 6, 36, 39],
+    model,
+    hooks=[2, 6, 36, 39],
 ):
     pretrained = nn.Module()
 
